@@ -17,8 +17,8 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
 
-        <script src="../assets/js/pswrdToggle.js"></script>
-        <script src="assets/js/colorTheme.js"></script>
+        <script src="assets/js/pswrdToggle.js" defer></script>
+        <script src="assets/js/colorTheme.js" defer></script>
 
     <title>Eqpos Voorraad Beheer inloggen</title>
 </head>
