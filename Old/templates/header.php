@@ -19,6 +19,7 @@
 
     <title>Document</title>
 </head>
+
 <body class="<?php echo $_SESSION['role']?>">
     <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
         <div class="container-fluid">
@@ -33,24 +34,27 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             Kies Voorraad Soort</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#system">Kassasystemen</a></li>
-                            <li><a class="dropdown-item" href="#pin">Pinautomaten</a></li>
-                            <li>
-                                <a class="dropdown-item position-relative" href="#mobile">
-                                    Handhelds
-                                    <!-- <span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span> -->
-                                </a>
+                        <form action="" method="post">
+                            <ul class="dropdown-menu">
+                                <li><input class="dropdown-item" type="submit" name="system" value="system" />
+                                </li>
+                                <li><a class="dropdown-item" href="#pin">Pinautomaten</a></li>
+                                <li>
+                                    <a class="dropdown-item position-relative" href="#mobile">
+                                        Handhelds
+                                        <!-- <span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span> -->
+                                    </a>
+                                </li>
+                                <li><a class="dropdown-item" href="#flip">Fliptops</a></li>
+                                <li><a class="dropdown-item" href="#drawer">Cash Drawer</a></li>
+                                <li><a class="dropdown-item" href="#pc">pc</a></li>
+                                <li><a class="dropdown-item" href="#pritner">Printers</a></li>
+                            </ul>
+                    </li>
+                    </li>
 
-                            </li>
-                            <li><a class="dropdown-item" href="#flip">Fliptops</a></li>
-                            <li><a class="dropdown-item" href="#drawer">Cash Drawer</a></li>
-                            <li><a class="dropdown-item" href="#pc">pc</a></li>
-                            <li><a class="dropdown-item" href="#pritner">Printers</a></li>
-                        </ul>
-                    </li>
-                    </li>
                 </ul>
+                </form>
                 <div class="d-lg-flex col-lg-3 justify-content-lg-end">
                     <form action="" method="post">
                         <input type="hidden" name="logout" value="0">
