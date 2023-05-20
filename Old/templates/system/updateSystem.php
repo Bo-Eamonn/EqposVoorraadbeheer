@@ -26,7 +26,7 @@ require_once "templates/nav.php";
 
             if($id !=null && $id !=0){
                 $med = $this->model->selectMed($id);
-            }           var_dump($this->model->selectMed($id));
+            }           
             if(isset($med)){
             echo '<form action="" method="POST">
                 <table>

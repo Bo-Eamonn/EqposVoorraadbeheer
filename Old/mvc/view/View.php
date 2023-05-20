@@ -18,7 +18,7 @@ class View{
     public function addSystem($result){
         require ('templates/system/addSystem.php');
     }
-    public function createbut tem($result){
+    public function createSystenm($result){
         require ('templates/system/addSystem.php');
     }
     

@@ -4,9 +4,7 @@ namespace mvc\controller;
 include_once "mvc/view/View.php";
 use mvc\view\View;
 include_once "mvc/model/System.php";
-use mvc\model\System;
 include_once "mvc/model/User.php";
-use mvc\model\User;
 include_once "mvc/model/Model.php";
 use mvc\model\Model;
 
