@@ -36,7 +36,7 @@ class Model
     public function logout(){    
     session_unset();
     session_destroy();
-    header("location: /voorraad_beheer/old/");
+    header("location: /voorraad_beheer/");
     exit;
     }
 
