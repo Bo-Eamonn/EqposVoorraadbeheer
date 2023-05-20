@@ -2,9 +2,7 @@
 require_once "templates/header.php";
 
 ?>
- <?php
-                echo "<h1>Welkom: " . $_SESSION['username'] . "</h1>";
-            ?>
+
     <main class="p-5">
         <div class="card" id="system">
             <div class="card-header">
