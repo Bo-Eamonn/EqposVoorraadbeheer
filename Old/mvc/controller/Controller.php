@@ -105,6 +105,7 @@ class Controller{
     
     public function showHomeAction(){
         $this->model->getHome();
+        $this->model->getSystem();
         $this->view->showHome();
     }
 

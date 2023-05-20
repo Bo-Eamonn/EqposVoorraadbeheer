@@ -55,8 +55,7 @@ class Model
     public function createSystem($model,$sn,$status,$firm,$issue,$ticketed,$notes){
         $this->connectDb();
         if ($model !='' && $sn !='' && $status !='' && $firm !='' && $issue !='' && $ticketed !='' && $notes !='') {
-            $query = $this->db->prepare("INSERT INTO `system` (`id`,`mod,el``sn`,`statu,s``firm`,`issue`,`ticketed`,`notes`) VALUES ('', :model, :sn, :status, :firm, :issue, :ticketed, :notes)");
-            $query->bindParam(":id",$id);
+            $query = $this->db->prepare("INSERT INTO `systems` (`id`,`mod,el``sn`,`statu,s``firm`,`issue`,`ticketed`,`notes`) VALUES ('', :model, :sn, :status, :firm, :issue, :ticketed, :notes)");
             $query->bindParam(":model",$model);  
             $query->bindParam(":sn",$sn); 
             $query->bindParam(":status",$status); 
@@ -73,7 +72,7 @@ class Model
 //Read System
     public function getSystem(){
         $this->connectDb();
-        $select = $this->db->query('SELECT * FROM `system` ');
+        $select = $this->db->query('SELECT * FROM `systems` ');
         if ($select) {
             $result=$select->fetchALL(PDO::FETCH_CLASS,System::class);
             return $result;
@@ -84,7 +83,7 @@ class Model
     public function updateSystem($id,$model,$sn,$status,$firm,$issue,$ticketed,$notes){
         $this->connectDb();
         if ($model !='' && $sn !='' && $status !='' && $firm !='' && $issue !='' && $ticketed !='' && $notes !='') {
-            $query = $this->db->prepare("UPDATE `system` SET  `id`=:id, `model`=:model, `sn`=:sn, `status`=:status, `firm`=:firm, `issue`=:issue, `ticketed`=:ticketed, `notes`=:notes WHERE `system`.`id`=:id");
+            $query = $this->db->prepare("UPDATE `systems` SET  `id`=:id, `model`=:model, `sn`=:sn, `status`=:status, `firm`=:firm, `issue`=:issue, `ticketed`=:ticketed, `notes`=:notes WHERE `system`.`id`=:id");
             $query->bindParam(":id",$id);
             $query->bindParam(":model",$model);  
             $query->bindParam(":sn",$sn); 
@@ -100,7 +99,7 @@ class Model
 //Delete System    
     public function deleteSystem($id){
         $this->connectDb();
-        $select = $this->db->prepare('DELETE FROM `system` WHERE `system`.`id`=:id');
+        $select = $this->db->prepare('DELETE FROM `systems` WHERE `system`.`id`=:id');
         $select->bindParam(":id", $id);
         $result = $select->execute();
         return $result;
@@ -108,7 +107,7 @@ class Model
 //Select System
     public function selectSystem($id){
         $this->connectDb();
-        $select = $this->db->prepare("SELECT * FROM `system` WHERE `system`.`id`=:id");
+        $select = $this->db->prepare("SELECT * FROM `systems` WHERE `system`.`id`=:id");
         $select->bindParam(":id", $id);
         $result = $select->execute();
         if ($result) {
