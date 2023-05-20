@@ -3,9 +3,7 @@ require_once "templates/header.php";
 ?>
    <main>
 
-   <?php
-                echo "<h1>Welkom: " . $_SESSION['username'] . "</h1>";
-            ?>
+   Home page
 
    </main>
 <?php
