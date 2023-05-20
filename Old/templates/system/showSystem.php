@@ -44,7 +44,7 @@ require_once "templates/header.php";
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-striped table-hover table-dark table-bordered table-responsive">
+                <table class="table table-striped table-hover table-bordered table-responsive" data-bs-target="dark">
                     <thead>
                         <tr>
                             <th>Model</th>
