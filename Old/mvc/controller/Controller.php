@@ -55,6 +55,39 @@ class Controller{
         $result = $this->model->updateSystem($id, $model,$sn,$status,$firm,$issue,$ticketed,$notes);
         $this->view->showSystem($result);
     }
+
+
+//CRUD pin
+    public function showPinAction(){
+        $result = $this->model->getPin();
+        $this->view->showPin($result);
+    }
+//CRUD handheld
+    public function showHandheldAction(){
+        $result = $this->model->getHandheld();
+        $this->view->showHandheld($result);
+    }
+//CRUD flip
+    public function showFlipAction(){
+        $result = $this->model->getFlip();
+        $this->view->showFlip($result);
+    }
+//CRUD drawer
+    public function showDrawerAction(){
+        $result = $this->model->getDrawer();
+        $this->view->showDrawer($result);
+    }
+//CRUD pc
+    public function showPcAction(){
+        $result = $this->model->getPc();
+        $this->view->showPc($result);
+    }
+//CRUD printer
+    public function showPrinterAction(){
+        $result = $this->model->getPrinter();
+        $this->view->showPrinter($result);
+    }
+
 //CRUD USER
     public function showUserAction(){
         $result = $this->model->getUsers();

@@ -28,27 +28,40 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- <span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span> -->
+
             <div class="collapse navbar-collapse d-lg-flex" id="navToggle">
                 <h1 class="navbar-brand col-lg-3 me-0" href="/">Eqpos Voorraad</h1>
                 <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                    <li class="nav-item">
+                        <form action="" method="post"><input type="submit" name="home" value="home"></input></form>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             Kies Voorraad Soort</a>
                         <form action="" method="post">
                             <ul class="dropdown-menu">
-                                <li><input class="dropdown-item" type="submit" name="system" value="system" />
-                                </li>
-                                <li><a class="dropdown-item" href="#pin">Pinautomaten</a></li>
                                 <li>
-                                    <a class="dropdown-item position-relative" href="#mobile">
-                                        Handhelds
-                                        <!-- <span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span> -->
-                                    </a>
+                                    <input class="dropdown-item" type="submit" name="system" value="Kassasysteem"></input>
                                 </li>
-                                <li><a class="dropdown-item" href="#flip">Fliptops</a></li>
-                                <li><a class="dropdown-item" href="#drawer">Cash Drawer</a></li>
-                                <li><a class="dropdown-item" href="#pc">pc</a></li>
-                                <li><a class="dropdown-item" href="#pritner">Printers</a></li>
+                                <li>
+                                    <input class="dropdown-item" type="submit" name="pin" value="Pinautomaten"></input>
+                                </li>
+                                <li>
+                                    <input class="dropdown-item" type="submit" name="hanheld" value="Handhelds"></input>
+                                </li>
+                                <li>
+                                    <input class="dropdown-item" type="submit" name="flip" value="Fliptops"></input>
+                                </li>
+                                <li>
+                                    <input class="dropdown-item" type="submit" name="drawer" value="Cash Drawer"></input>
+                                </li>
+                                <li>
+                                    <input class="dropdown-item" type="submit" name="pc" value="PC"></input>
+                                </li>
+                                <li>
+                                    <input class="dropdown-item" type="submit" name="printer" value="Printers"></input>
+                                </li>
                             </ul>
                     </li>
                     </li>

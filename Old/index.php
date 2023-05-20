@@ -22,18 +22,8 @@ $controller = new Controller();
             $controller->deleteUser();
         } elseif(isset($_POST['editUser'])) {
             $controller->editUser();
-        } 
-//DEFAULT PAGE
-        else {
-            $controller->showHomeAction();
         }
-    }
-//LOGIN GEBRUIKER
-    elseif (isset($_SESSION['role']) && $_SESSION['role']=="user") {
-        if (isset($_POST['logout'])){
-            $controller->logoutAction();
-        }
-//CRUD system        
+//CRUD Systems 
         elseif (isset($_POST['system']) || isset($_POST['cancelSystem'])) {
             $controller->showSystemAction();
         }elseif (isset($_POST['showAddSystem'])) {
@@ -46,24 +36,102 @@ $controller = new Controller();
             $controller->showUpdateSystem($id);
         } elseif (isset($_POST['updateSystem'])) {
             $controller->updateSystem();
+        } 
+
+//CRUD pin
+        elseif (isset($_POST['pin']) || isset($_POST['cancelPin'])) {
+            $controller->showPinAction();
         }
-//CRUD Pin        
-        // elseif (isset($_POST['pin']) || isset($_POST['cancelPin'])) {
-        //     $controller->showPinAction();
-        // }elseif (isset($_POST['showAddPin'])) {
-        //     $controller->addPinAction();
-        // }elseif (isset($_POST['toevoegenPin'])) {
-        //     $controller->savePin();
-        // } elseif(isset($_POST['deletePin'])) {
-        //     $controller->deletePin();
-        // } elseif(isset($_POST['showUpdatePin'])) {
-        //     $controller->showUpdatePin($id);
-        // } elseif (isset($_POST['updatePin'])) {
-        //     $controller->updatePin();
-        // }
-//DEFAULT PAGE        
-        else {
+        
+//CRUD handheld
+        elseif (isset($_POST['handheld']) || isset($_POST['cancelHandheld'])) {
+            $controller->showHandheldAction();
+        }
+        
+//CRUD flip
+        elseif (isset($_POST['flip']) || isset($_POST['cancelFlip'])) {
+            $controller->showFlipAction();
+        }
+        
+//CRUD drawer
+        elseif (isset($_POST['drawer']) || isset($_POST['cancelDrawer'])) {
+            $controller->showDrawerAction();
+        }
+        
+//CRUD pc
+        elseif (isset($_POST['pc']) || isset($_POST['cancelPc'])) {
+            $controller->showPcAction();
+        }
+        
+//CRUD printer
+        elseif (isset($_POST['printer']) || isset($_POST['cancelPrinter'])) {
+            $controller->showPrinterAction();
+        }
+        
+
+//DEFAULT PAGE
+        elseif (isset($_POST['home'])) {
+            $controller->showHomeAction();
+        }else {
             $controller->showHomeAction();
         }
+    }
+//LOGIN GEBRUIKER
+    elseif (isset($_SESSION['role']) && $_SESSION['role']=="user"){
+        if (isset($_POST['logout'])){
+            $controller->logoutAction();
+        }
+//CRUD system        
+        elseif (isset($_POST['system']) || isset($_POST['cancelSystem'])) {
+            $controller->showSystemAction();
+        }elseif (isset($_POST['showAddSystem'])) {
+            $controller->addSystemAction();
+        }elseif (isset($_POST['toevoegenSystem'])) {
+            $controller->saveSystem();
+        }elseif(isset($_POST['showUpdateSystem'])) {
+            $controller->showUpdateSystem($id);
+        }elseif (isset($_POST['updateSystem'])) {
+            $controller->updateSystem();
+        }
+
+
+//CRUD pin
+        elseif (isset($_POST['pin']) || isset($_POST['cancelPin'])) {
+            $controller->showPinAction();
+        }
+        
+//CRUD handheld
+        elseif (isset($_POST['handheld']) || isset($_POST['cancelHandheld'])) {
+            $controller->showHandheldAction();
+        }
+        
+//CRUD flip
+        elseif (isset($_POST['flip']) || isset($_POST['cancelFlip'])) {
+            $controller->showFlipAction();
+        }
+        
+//CRUD drawer
+        elseif (isset($_POST['drawer']) || isset($_POST['cancelDrawer'])) {
+            $controller->showDrawerAction();
+        }
+        
+//CRUD pc
+        elseif (isset($_POST['pc']) || isset($_POST['cancelPc'])) {
+            $controller->showPcAction();
+        }
+        
+//CRUD printer
+        elseif (isset($_POST['printer']) || isset($_POST['cancelPrinter'])) {
+            $controller->showPrinterAction();
+        }  
+              
+        
+        
+//DEFAULT PAGE        
+    elseif (isset($_POST['home'])) {
+        $controller->showHomeAction();
+    }else {
+        $controller->showHomeAction();
+    }
     }else $controller->loginAction();
 ?>
