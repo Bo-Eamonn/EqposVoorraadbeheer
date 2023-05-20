@@ -6,5 +6,5 @@ pswrdToggle.addEventListener('click', function (e) {
     const type = pswrd.getAttribute('type') === 'password' ? 'text' : 'password';
     pswrd.setAttribute('type', type);
     // toggle the eye slash icon
-    this.classList.toggle('fa-eye-slash');
+    this.classList.toggle('bi-eye-slash');
 });
