@@ -18,7 +18,7 @@ class View{
     public function addSystem($result){
         require ('templates/system/addSystem.php');
     }
-    public function createSystenm($result){
+    public function createSystem($result){
         require ('templates/system/addSystem.php');
     }
     
@@ -46,6 +46,9 @@ class View{
 // UPDATE
     public function showUpdateSystem($id=NULL){
             require ('templates/system/updateSystem.php');
-}
+    }
+    public function updateUser($result){
+        require ('templates/patient/updateUser.php');
+    }
     
 }

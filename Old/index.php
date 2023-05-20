@@ -48,22 +48,22 @@ $controller = new Controller();
             $controller->updateSystem();
         }
 //CRUD Pin        
-        elseif (isset($_POST['pin']) || isset($_POST['cancelPin'])) {
-            $controller->showPinAction();
-        }elseif (isset($_POST['showAddPin'])) {
-            $controller->addPinAction();
-        }elseif (isset($_POST['toevoegenPin'])) {
-            $controller->savePin();
-        } elseif(isset($_POST['deletePin'])) {
-            $controller->deletePin();
-        } elseif(isset($_POST['showUpdatePin'])) {
-            $controller->showUpdatePin($id);
-        } elseif (isset($_POST['updatePin'])) {
-            $controller->updatePin();
-        }
+        // elseif (isset($_POST['pin']) || isset($_POST['cancelPin'])) {
+        //     $controller->showPinAction();
+        // }elseif (isset($_POST['showAddPin'])) {
+        //     $controller->addPinAction();
+        // }elseif (isset($_POST['toevoegenPin'])) {
+        //     $controller->savePin();
+        // } elseif(isset($_POST['deletePin'])) {
+        //     $controller->deletePin();
+        // } elseif(isset($_POST['showUpdatePin'])) {
+        //     $controller->showUpdatePin($id);
+        // } elseif (isset($_POST['updatePin'])) {
+        //     $controller->updatePin();
+        // }
 //DEFAULT PAGE        
         else {
-            $controller->showLogin();
+            $controller->showHomeAction();
         }
-    }
+    }else $controller->loginAction();
 ?>

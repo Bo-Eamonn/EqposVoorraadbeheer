@@ -36,10 +36,19 @@ class Model
     public function logout(){    
     session_unset();
     session_destroy();
-    header("location: /voorraad_beheer/");
+    header("location: /voorraad_beheer/old/");
     exit;
     }
 
+    public function getHome(){
+        if(1+1==2) {
+        $text = "Last Login ";
+        $date = date("F j, Y, g:i a");
+        $result = $text.$date;
+        return $result;
+        }
+        return null;
+    }
 
 
 //Create New System

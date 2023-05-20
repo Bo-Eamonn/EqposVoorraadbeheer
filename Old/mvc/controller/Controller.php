@@ -25,10 +25,14 @@ class Controller{
         $this->view->createSystem($result);
     }
     public function saveSystem() {
-        $name = filter_input(INPUT_POST,'name');
-        $cat = $_POST["cat"];
-        $insured = filter_input(INPUT_POST,'insured');
-        $this->model->createSystem($name, $cat, $insured);
+        $model = $_POST["model"];
+        $sn = filter_input(INPUT_POST,'sn');
+        $status = $_POST["status"];
+        $firm = filter_input(INPUT_POST,'firm');
+        $issue = filter_input(INPUT_POST,'issue');
+        $ticketed = $_POST["ticketed"];
+        $notes = filter_input(INPUT_POST,'notes');
+        $this->model->createSystem($model,$sn,$status,$firm,$issue,$ticketed,$notes);
         $this->showSystemAction();
     }
     public function deleteSystem() {
@@ -41,10 +45,14 @@ class Controller{
     }
     public function updateSystem(){
         $id = filter_input(INPUT_POST, 'id');
-        $name = filter_input(INPUT_POST,'name');
-        $cat = $_POST["cat"];
-        $insured = filter_input(INPUT_POST,'insured');
-        $result = $this->model->updateSystem($id, $name, $cat, $insured);
+        $model = $_POST["model"];
+        $sn = filter_input(INPUT_POST,'sn');
+        $status = $_POST["status"];
+        $firm = filter_input(INPUT_POST,'firm');
+        $issue = filter_input(INPUT_POST,'issue');
+        $ticketed = $_POST["ticketed"];
+        $notes = filter_input(INPUT_POST,'notes');
+        $result = $this->model->updateSystem($id, $model,$sn,$status,$firm,$issue,$ticketed,$notes);
         $this->view->showSystem($result);
     }
 //CRUD USER
