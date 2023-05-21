@@ -11,7 +11,7 @@ class View{
     public function __construct($model){
         $this->model = $model;
     }
-    public function showLogin(){
+    public function showLogin($errorMessage = ""){
         require ('templates/login/login.php');
     }
 // CREATE
@@ -31,7 +31,7 @@ class View{
     }
 
 // READ
-    public function showHome(){ 
+    public function showHome($stockSystems){ 
         require ('templates/login/showHome.php');
     }
 
@@ -43,6 +43,16 @@ class View{
     public function showUsers($result){
         require ('templates/user/showUser.php');
     }
+
+// Show stock in nav
+// variables , $stockPins, $stockHandhelds, $stockFliptops, $stockDrawers, $StockPcs, $stockPrinters
+
+    public function renderNavStock($stockSystems) {
+        require('templates/header.php');
+
+    }
+
+
 // UPDATE
     public function showUpdateSystem($id=NULL){
             require ('templates/system/updateSystem.php');

@@ -39,13 +39,16 @@
                     id="pswrd" class="form-control border border-end-0 border-1 rounded-start-1 border-black">
                     <i class="bi bi-eye input-group-text border border-start-0 border-1 rounded-end-1 border-black" id="pswrdToggle"></i>
             </div>
+            <?php if (!empty($errorMessage)) : ?>
+    <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
+<?php endif; ?>
             <button class="w-100 btn btn-lg btn-primary" name="inloggen" type="submit">Sign in</button>
         </form>
 
 
         
     </main>
-    <button class="btn btn-dark shadow position-absolute bottom-0 end-0" id="btnSwitch">Toggle Mode</button>
+    <button class="btn btn-outline-light border border-1 shadow position-absolute bottom-0 end-0" id="btnSwitch">Switch theme <i class="bi bi-brightness-low"></i></button>
     
 
 </body>

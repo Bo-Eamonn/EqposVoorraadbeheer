@@ -25,5 +25,8 @@ class System
         }
         return $this;
     }
+    public function getStock() {
+        return $this->stock;
+    }
 
 }

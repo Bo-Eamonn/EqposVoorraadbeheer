@@ -1,3 +1,4 @@
+<?php echo '<!DOCTYPE html>'; ?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 
@@ -12,13 +13,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
-    
+
     <script src="assets/js/colorTheme.js" defer></script>
     <title>Document</title>
 </head>
 
-<body class="<?php echo $_SESSION['role']?>">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+<body class="<?php echo $_SESSION['role'];?>">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom border-3 shadow-lg">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navToggle"
                 aria-controls="navToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,23 +41,44 @@
                             Kies Voorraad Soort</a>
                         <form action="" method="post">
                             <ul class="dropdown-menu">
-                                <li>
-                                    <input class="dropdown-item" type="submit" name="system" value="Kassasysteem"></input>
+                                <li class="position-relative">
+                                    <input class="dropdown-item position-relative" type="submit" name="system"
+                                        value="Kassasysteem">
+                                        <?php
+                                        if (!empty($stockSystems)) {
+                                            $stockCountSystem = count($stockSystems);
+                                            if ($stockCountSystem <= 5) {
+                                                echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountSystem .'">
+                                                      '. $stockCountSystem .'
+                                                      </span>';
+                                            } else {
+                                                echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountSystem .'">
+                                                      '. $stockCountSystem .'
+                                                      </span>';
+                                            }
+                                        } else {
+                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data">0</span>';
+                                        }
+                                        ?>
+
+                                    </input>
                                 </li>
-                                <li>
+                                <li class="position-relative">
                                     <input class="dropdown-item" type="submit" name="pin" value="Pinautomaten"></input>
                                 </li>
-                                <li>
+                                <li class="position-relative">
                                     <input class="dropdown-item" type="submit" name="hanheld" value="Handhelds"></input>
                                 </li>
-                                <li>
-                                    <input class="dropdown-item" type="submit" name="flip" value="Fliptops"></input>
+                                <li class="position-relative">
+                                    <input class="dropdown-item" type="submit" name="flip" value="Fliptops">
+                                    </input>
                                 </li>
-                                <li>
-                                    <input class="dropdown-item" type="submit" name="drawer" value="Cash Drawer"></input>
+                                <li class="position-relative">
+                                    <input class="dropdown-item" type="submit" name="drawer"
+                                        value="Cash Drawer"></input>
                                 </li>
-                                <li>
-                                    <input class="dropdown-item" type="submit" name="pc" value="PC"></input>
+                                <li class="position-relative">
+                                    <input class="dropdown-item " type="submit" name="pc" value="PC">
                                 </li>
                                 <li>
                                     <input class="dropdown-item" type="submit" name="printer" value="Printers"></input>
@@ -72,6 +94,7 @@
                         <input type="hidden" name="logout" value="0">
                         <input type="submit" id="logout" value="Uitloggen" class="btn btn-outline-danger">
                     </form>
+                    <button class="btn btn-outline-light border border-1 shadow" id="btnSwitch">Switch theme <i class="bi bi-brightness-low"></i></button>
                 </div>
             </div>
         </div>

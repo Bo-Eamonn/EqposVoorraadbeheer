@@ -118,28 +118,35 @@ class Controller{
     }
 
 // default Fucntions    
-    public function loginAction()
-    {
-        if (isset($_POST['uname']) && isset($_POST['pswrd'])) {
-            $uname = filter_input(INPUT_POST, 'uname');
-            $pswrd = filter_input(INPUT_POST, 'pswrd');
-            $this->model->login($uname, $pswrd);
+public function loginAction() {
+    if (isset($_POST['uname']) && isset($_POST['pswrd'])) {
+        $uname = filter_input(INPUT_POST, 'uname');
+        $pswrd = filter_input(INPUT_POST, 'pswrd');
         
+        if ($this->model->login($uname, $pswrd)) {
             if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                $model = new Model();
+                $stockSystems = $model->getSystemStock();
                 $this->model->getHome();
-                $this->view->showHome();
+                $this->view->showHome($stockSystems);
             } else {
                 $this->view->showLogin();
             }
-        }else {
-                $this->view->showLogin();
+        } else {
+            $errorMessage = "Invalid username or password. Please try again.";
+            $this->view->showLogin($errorMessage);
         }
+    } else {
+        $this->view->showLogin();
     }
+}
     
     public function showHomeAction(){
+        $model = new Model();
+        $stockSystems = $model->getSystemStock();
         $this->model->getHome();
-        $this->model->getSystem();
-        $this->view->showHome();
+        // $this->model->getSystem();
+        $this->view->showHome($stockSystems);
     }
 
     public function logoutAction(){
@@ -147,4 +154,20 @@ class Controller{
         $this->view->showLogin();
         
     }
+
+// Show Stock in Nav 
+// public function getSystemStockAction() {
+//     $stockSystems = $this->model->getSystemStock();
+//     $this->view->renderNavStock($stockSystems);
+// }
+public function showStockNav()
+{
+    $model = new Model();
+    $stockSystems = $model->getSystemStock();
+
+    $this->view->renderNavStock($stockSystems);
+    
+}
+
+    
 }

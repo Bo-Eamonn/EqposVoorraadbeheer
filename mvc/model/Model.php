@@ -15,28 +15,34 @@ class Model
         $this->db = new PDO('mysql:host=localhost;dbname=voorraadbeheer', "root", "");
     }
 //Login
-    public function login($uname, $pswrd){
-        $this->connectDb();
-        $query = $this->db->prepare('SELECT * FROM `users` WHERE `users`.`uname` =:uname');
-        $query->bindParam(":uname", $uname);
-        $result = $query->execute();
-        if($result) {
-            $query->setFetchMode(\PDO::FETCH_CLASS, User::class);
-            $user = $query->fetch();
-            if ($user) {
-                $gehashtpassword = strtoupper(hash("sha256", $pswrd));
-                if ($user->getPswrd() == $gehashtpassword) {
-                    $_SESSION['username'] = $user->getUname();
-                    $_SESSION['role'] = $user->getRole();
-                }
+public function login($uname, $pswrd) {
+    $this->connectDb();
+    $query = $this->db->prepare('SELECT * FROM `users` WHERE `users`.`uname` = :uname');
+    $query->bindParam(":uname", $uname);
+    $result = $query->execute();
+    
+    if ($result) {
+        $query->setFetchMode(\PDO::FETCH_CLASS, User::class);
+        $user = $query->fetch();
+        if ($user) {
+            $hasedPassword = strtoupper(hash("sha256", $pswrd));
+            if ($user->getPswrd() == $hasedPassword) {
+                $_SESSION['username'] = $user->getUname();
+                $_SESSION['role'] = $user->getRole();
+                return true; // Login successful
             }
         }
     }
+    
+    return false; // Login failed
+}
 //logout    
-    public function logout(){    
+    public function logout(){
+        ob_start();    
     session_unset();
     session_destroy();
     header("location: /voorraad_beheer/");
+    ob_end_clean();
     exit;
     }
 
@@ -78,12 +84,25 @@ class Model
             return $result;
         }
         return null;      
-    }    
+    }
+    
+// Read system stock
+    public function getSystemStock(){
+        $this->connectDb();
+        $select = $this->db->query('SELECT * FROM `systems` WHERE status = "Beschikbaar"');
+        if ($select) {
+            $stock = $select->fetchAll(PDO::FETCH_CLASS, System::class);
+            return $stock;
+        }
+        echo "Error fetching stock";
+        return null;
+    }
+
 //Update System
     public function updateSystem($id,$model,$sn,$status,$firm,$issue,$ticketed,$notes){
         $this->connectDb();
         if ($model !='' && $sn !='' && $status !='' && $firm !='' && $issue !='' && $ticketed !='' && $notes !='') {
-            $query = $this->db->prepare("UPDATE `systems` SET  `id`=:id, `model`=:model, `sn`=:sn, `status`=:status, `firm`=:firm, `issue`=:issue, `ticketed`=:ticketed, `notes`=:notes WHERE `system`.`id`=:id");
+            $query = $this->db->prepare("UPDATE `systems` SET  `id`=:id, `model`=:model, `sn`=:sn, `status`=:status, `firm`=:firm, `issue`=:issue, `ticketed`=:ticketed, `notes`=:notes WHERE `systems`.`id`=:id");
             $query->bindParam(":id",$id);
             $query->bindParam(":model",$model);  
             $query->bindParam(":sn",$sn); 
@@ -99,7 +118,7 @@ class Model
 //Delete System    
     public function deleteSystem($id){
         $this->connectDb();
-        $select = $this->db->prepare('DELETE FROM `systems` WHERE `system`.`id`=:id');
+        $select = $this->db->prepare('DELETE FROM `systems` WHERE `systems`.`id`=:id');
         $select->bindParam(":id", $id);
         $result = $select->execute();
         return $result;
@@ -107,7 +126,7 @@ class Model
 //Select System
     public function selectSystem($id){
         $this->connectDb();
-        $select = $this->db->prepare("SELECT * FROM `systems` WHERE `system`.`id`=:id");
+        $select = $this->db->prepare("SELECT * FROM `systems` WHERE `systems`.`id`=:id");
         $select->bindParam(":id", $id);
         $result = $select->execute();
         if ($result) {

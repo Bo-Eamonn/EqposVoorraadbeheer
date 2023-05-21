@@ -8,6 +8,7 @@ $controller = new Controller();
     session_start();
 // ADMIN LOGIN    
     if (isset($_SESSION['role']) && $_SESSION['role']=="admin") {
+        $controller->showStockNav();
         if (isset($_POST['logout'])){
             $controller->logoutAction();
         }
@@ -127,11 +128,12 @@ $controller = new Controller();
               
         
         
-//DEFAULT PAGE        
-    elseif (isset($_POST['home'])) {
-        $controller->showHomeAction();
-    }else {
-        $controller->showHomeAction();
-    }
+// DEFAULT PAGE
+        elseif (isset($_POST['home'])) {
+            $controller->showHomeAction();
+        } else {
+            $controller->showHomeAction();
+        }
+
     }else $controller->loginAction();
 ?>
