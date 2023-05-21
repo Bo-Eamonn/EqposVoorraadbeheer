@@ -25,19 +25,21 @@ $controller = new Controller();
             $controller->editUser();
         }
 //CRUD Systems 
-        elseif (isset($_POST['system']) || isset($_POST['cancelSystem'])) {
-            $controller->showSystemAction();
-        }elseif (isset($_POST['showAddSystem'])) {
-            $controller->addSystemAction();
-        }elseif (isset($_POST['toevoegenSystem'])) {
-            $controller->saveSystem();
-        } elseif(isset($_POST['deleteSystem'])) {
-            $controller->deleteSystem();
-        } elseif(isset($_POST['showUpdateSystem'])) {
-            $controller->showUpdateSystem($id);
-        } elseif (isset($_POST['updateSystem'])) {
-            $controller->updateSystem();
-        } 
+elseif (isset($_POST['system']) || isset($_POST['cancelSystem'])) {
+    $controller->showSystemAction();
+} elseif (isset($_POST['showAddSystem'])) {
+    $controller->addSystemAction();
+} elseif (isset($_POST['toevoegenSystem'])) {
+    $controller->saveSystem();
+} elseif (isset($_POST['deleteSystem'])) {
+    $controller->deleteSystem();
+} elseif (isset($_POST['showUpdateSystem'])) {
+    $controller->showUpdateSystem($id);
+} elseif (isset($_POST['updateSystem'])) {
+    $controller->updateSystem();
+} elseif (isset($_POST['sort'])) { // Handle the sort option
+    $controller->showSystemAction();
+}
 
 //CRUD pin
         elseif (isset($_POST['pin']) || isset($_POST['cancelPin'])) {

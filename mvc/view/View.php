@@ -35,7 +35,7 @@ class View{
         require ('templates/login/showHome.php');
     }
 
-    public function showSystem($result){
+    public function showSystem($result, $sort = 'id_asc'){
         require ('templates/system/showSystem.php');
     }
 

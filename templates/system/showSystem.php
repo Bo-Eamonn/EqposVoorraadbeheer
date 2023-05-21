@@ -12,34 +12,33 @@ require_once "templates/header.php";
                     <h2 class="">Kassasystemen Jassway</h2>
                 </div>
                 <div class="col-4">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Sorteer
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <button class="dropdown-item" type="button">S/N
-                                    <i class="bi bi-arrow-up"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item" type="button">S/N
-                                    <i class="bi bi-arrow-down"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item" type="button">Status
-                                    <i class="bi bi-arrow-up"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item" type="button">Status
-                                    <i class="bi bi-arrow-down"></i>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+                    <form action="" method="post" class="justify-content-center mb-2">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Sorteer
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button class="dropdown-item" type="submit" name="sort" value="sn_asc">S/N <i
+                                            class="bi bi-arrow-up"></i></button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="submit" name="sort" value="sn_desc">S/N <i
+                                            class="bi bi-arrow-down"></i></button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="submit" name="sort" value="status_asc">Status <i
+                                            class="bi bi-arrow-up"></i></button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="submit" name="sort" value="status_desc">Status
+                                        <i class="bi bi-arrow-down"></i></button>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>

@@ -76,15 +76,32 @@ public function login($uname, $pswrd) {
     }
 
 //Read System
-    public function getSystem(){
-        $this->connectDb();
-        $select = $this->db->query('SELECT * FROM `systems` ');
-        if ($select) {
-            $result=$select->fetchALL(PDO::FETCH_CLASS,System::class);
-            return $result;
-        }
-        return null;      
+public function getSystem($sort = 'id_asc'){
+    $this->connectDb();
+    
+    // Modify the SQL query based on the selected sort option
+    if ($sort === 'sn_asc') {
+        $orderBy = 'sn ASC';
+    } elseif ($sort === 'sn_desc') {
+        $orderBy = 'sn DESC';
+    } elseif ($sort === 'status_asc') {
+        $orderBy = 'status ASC';
+    } elseif ($sort === 'status_desc') {
+        $orderBy = 'status DESC';
+    } else {
+        $orderBy = 'id ASC'; // Default sort option is 'id_asc'
     }
+    
+    $select = $this->db->query('SELECT * FROM `systems` ORDER BY '.$orderBy);
+    
+    if ($select) {
+        $result = $select->fetchAll(PDO::FETCH_CLASS, System::class);
+        return $result;
+    }
+    
+    return null;      
+}
+
     
 // Read system stock
     public function getSystemStock(){

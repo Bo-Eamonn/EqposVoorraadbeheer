@@ -16,10 +16,11 @@ class Controller{
         $this->view = new View($this->model);
     }
 //CRUD System
-    public function showSystemAction(){
-        $result = $this->model->getSystem();
-        $this->view->showSystem($result);
-    }
+public function showSystemAction(){
+    $sort = $_POST['sort'] ?? 'id_asc'; // Retrieve the selected sort option
+    $result = $this->model->getSystem($sort);
+    $this->view->showSystem($result);
+}
     public function addSystemAction(){
         $result = "";
         $this->view->createSystem($result);
