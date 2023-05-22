@@ -49,9 +49,6 @@
                 aria-controls="navToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <!-- <span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span> -->
-
             <div class="collapse navbar-collapse d-lg-flex" id="navToggle">
                 <h1 class="navbar-brand col-lg-3 me-0" href="/">
                     <img src="assets/images/logowhite.png" id="logo" alt="" width="auto" height="75">
@@ -72,40 +69,140 @@
                                         if (!empty($stockSystems)) {
                                             $stockCountSystem = count($stockSystems);
                                             if ($stockCountSystem <= 5) {
-                                                echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountSystem .'">
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountSystem .'">
                                                       '. $stockCountSystem .'
                                                       </span>';
                                             } else {
-                                                echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountSystem .'">
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountSystem .'">
                                                       '. $stockCountSystem .'
                                                       </span>';
                                             }
                                         } else {
-                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data">0</span>';
+                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data"></span>';
                                         }
                                         ?>
 
                                     </input>
                                 </li>
                                 <li class="position-relative">
-                                    <input class="dropdown-item" type="submit" name="pin" value="Pinautomaten"></input>
-                                </li>
-                                <li class="position-relative">
-                                    <input class="dropdown-item" type="submit" name="hanheld" value="Handhelds"></input>
-                                </li>
-                                <li class="position-relative">
-                                    <input class="dropdown-item" type="submit" name="flip" value="Fliptops">
+                                    <input class="dropdown-item" type="submit" name="pin" value="Pinautomaten">
+                                    <?php
+                                        if (!empty($stockPins)) {
+                                            $stockCountPin = count($stockPin);
+                                            if ($stockCountPin <= 5) {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountPin .'">
+                                                      '. $stockCountPin .'
+                                                      </span>';
+                                            } else {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountPin .'">
+                                                      '. $stockCountPin .'
+                                                      </span>';
+                                            }
+                                        } else {
+                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data"></span>';
+                                        }
+                                        ?>
                                     </input>
                                 </li>
                                 <li class="position-relative">
-                                    <input class="dropdown-item" type="submit" name="drawer"
-                                        value="Cash Drawer"></input>
+                                    <input class="dropdown-item" type="submit" name="hanheld" value="Handhelds">
+                                    <?php
+                                        if (!empty($stockHandHelds)) {
+                                            $stockCountHandHeld = count($stockHandHeld);
+                                            if ($stockCountHandHeld <= 5) {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountHandHeld .'">
+                                                      '. $stockCountHandHeld .'
+                                                      </span>';
+                                            } else {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountHandHeld .'">
+                                                      '. $stockCountHandHeld .'
+                                                      </span>';
+                                            }
+                                        } else {
+                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data"></span>';
+                                        }
+                                        ?>
+                                    </input>
+                                </li>
+                                <li class="position-relative">
+                                    <input class="dropdown-item" type="submit" name="flip" value="Fliptops">
+                                    <?php
+                                        if (!empty($stockFlipTops)) {
+                                            $stockCountFlipTop = count($stockFlipTop);
+                                            if ($stockCountFlipTop <= 5) {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountFlipTop .'">
+                                                      '. $stockCountFlipTop .'
+                                                      </span>';
+                                            } else {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountFlipTop .'">
+                                                      '. $stockCountFlipTop .'
+                                                      </span>';
+                                            }
+                                        } else {
+                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data"></span>';
+                                        }
+                                        ?>
+                                    </input>
+                                </li>
+                                <li class="position-relative">
+                                    <input class="dropdown-item" type="submit" name="drawer" value="Cash Drawer">
+                                    <?php
+                                        if (!empty($stockDrawers)) {
+                                            $stockCountDrawer = count($stockDrawer);
+                                            if ($stockCountDrawer <= 5) {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountDrawer .'">
+                                                      '. $stockCountDrawer .'
+                                                      </span>';
+                                            } else {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountDrawer .'">
+                                                      '. $stockCountDrawer .'
+                                                      </span>';
+                                            }
+                                        } else {
+                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data"></span>';
+                                        }
+                                        ?>
+                                    </input>
                                 </li>
                                 <li class="position-relative">
                                     <input class="dropdown-item " type="submit" name="pc" value="PC">
+                                    <?php
+                                        if (!empty($stockPcs)) {
+                                            $stockCountPc = count($stockPc);
+                                            if ($stockCountPc <= 5) {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountPc .'">
+                                                      '. $stockCountPc .'
+                                                      </span>';
+                                            } else {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountPc .'">
+                                                      '. $stockCountPc .'
+                                                      </span>';
+                                            }
+                                        } else {
+                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data"></span>';
+                                        }
+                                        ?>
+                                    </input>
                                 </li>
-                                <li>
-                                    <input class="dropdown-item" type="submit" name="printer" value="Printers"></input>
+                                <li class="position-relative">
+                                    <input class="dropdown-item" type="submit" name="printer" value="Printers">
+                                    <?php
+                                        if (!empty($stockPrinters)) {
+                                            $stockCountPrinter = count($stockPrinter);
+                                            if ($stockCountPrinter <= 5) {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-warning rounded-pill" title="Momenteel beschikbaar '. $stockCountPrinter .'">
+                                                      '. $stockCountPrinter .'
+                                                      </span>';
+                                            } else {
+                                                echo '<span class="text-dark position-absolute top-50 start-100 translate-middle p-2 bg-success rounded-pill" title="Momenteel beschikbaar '. $stockCountPrinter .'">
+                                                      '. $stockCountPrinter .'
+                                                      </span>';
+                                            }
+                                        } else {
+                                            echo '<span class="position-absolute top-50 start-100 translate-middle p-2 bg-danger rounded-pill" title="Geen data"></span>';
+                                        }
+                                        ?>
+                                    </input>
                                 </li>
                             </ul>
                     </li>
