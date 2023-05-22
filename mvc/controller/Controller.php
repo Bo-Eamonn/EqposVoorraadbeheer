@@ -22,28 +22,47 @@ public function showSystemAction(){
     $this->view->showSystem($result);
 }
 
-public function addSystemAction(){
+public function addSystemAction() {
     $this->view->addSystem();
 }
 
 public function saveSystem() {
-    $model = $_POST["model"];
-    $sn = filter_input(INPUT_POST,'sn');
-    $status = $_POST["status"];
-    $firm = filter_input(INPUT_POST,'firm');
-    $issue = filter_input(INPUT_POST,'issue');
-    $ticketed = $_POST["ticketed"];
-    $notes = filter_input(INPUT_POST,'note');
-    $result = $this->model->createSystem($model,$sn,$status,$firm,$issue,$ticketed,$notes);
+    if (isset($_POST["addNewSystem"])) {
+        $dataRows = $_POST["data_row"];
 
-    if ($result !== -1) {
-        // System created successfully
+        foreach ($dataRows as $rowData) {
+            $model = $rowData["model"];
+            $sn = $rowData["sn"];
+            $status = $rowData["status"];
+            $firm = $rowData["firm"];
+            $issue = $rowData["issue"];
+            $ticketed = $rowData["ticketed"];
+            $notes = $rowData["note"];
+
+            $result = $this->model->createSystem($model, $sn, $status, $firm, $issue, $ticketed, $notes);
+
+            if (!$result) {
+                // Error creating the system
+                // You can handle the error in a way that suits your application
+                // For example, log the error or display an error message to the user
+                echo "Error creating the system";
+                return; // Stop execution after displaying the error
+            }
+        }
+
+        // All systems created successfully
         $this->showSystemAction();
-    } else {
-        // Error creating the system
-        // You can handle the error in a way that suits your application
+        return; // Stop execution after redirecting
+    }
+
+    // Handle the cancelation action
+    if (isset($_POST["cancelSystem"])) {
+        $this->showSystemAction();
+        return; // Stop execution after redirecting
     }
 }
+
+
 
 public function deleteSystem() {
     $id = $_POST["deleteSystem"];

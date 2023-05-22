@@ -12,20 +12,23 @@ class View{
         $this->model = $model;
     }
     
-// CRud view System
-    public function addSystem($result){
-        require ('templates/system/addSystem.php');
-    }
-    public function createSystem($result){
-        require ('templates/system/addSystem.php');
-    }
-    public function showUpdateSystem($system, $id=NULL){
-        require ('templates/system/updateSystem.php');
-    }
+// CRUD view System
+public function addSystem() {
+    require ('templates/system/addSystem.php');
+}
 
-    public function showSystem($result, $sort = 'id_asc'){
-        require ('templates/system/showSystem.php');
-    }
+public function createSystem($result) {
+    require ('templates/system/addSystem.php');
+}
+
+public function showUpdateSystem($system, $id = NULL) {
+    require ('templates/system/updateSystem.php');
+}
+
+public function showSystem($result, $sort = 'id_asc') {
+    require ('templates/system/showSystem.php');
+}
+
 
     
     

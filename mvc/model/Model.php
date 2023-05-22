@@ -58,23 +58,24 @@ public function login($uname, $pswrd) {
 
 
 //Create New System
-public function createSystem($model,$sn,$status,$firm,$issue,$ticketed,$notes){
+public function createSystem($model, $sn, $status, $firm, $issue, $ticketed, $notes) {
     $this->connectDb();
-    if ($model !='' && $sn !='' && $status !='' && $firm !='' && $issue !='' && $ticketed !='' && $notes !='') {
+    if ($model != '' && $sn != '' && $status != '' && $firm != '' && $issue != '' && $ticketed != '' && $notes != '') {
         $query = $this->db->prepare("INSERT INTO `systems` (`id`, `model`, `sn`, `status`, `firm`, `issue`, `ticketed`, `notes`, `date_added`) VALUES (NULL, :model, :sn, :status, :firm, :issue, :ticketed, :notes, :date_added)");
-        $query->bindParam(":model",$model);  
-        $query->bindParam(":sn",$sn); 
-        $query->bindParam(":status",$status); 
-        $query->bindParam(":firm",$firm); 
-        $query->bindParam(":issue",$issue); 
-        $query->bindParam(":ticketed",$ticketed); 
-        $query->bindParam(":notes",$notes); 
+        $query->bindParam(":model", $model);
+        $query->bindParam(":sn", $sn);
+        $query->bindParam(":status", $status);
+        $query->bindParam(":firm", $firm);
+        $query->bindParam(":issue", $issue);
+        $query->bindParam(":ticketed", $ticketed);
+        $query->bindParam(":notes", $notes);
         $query->bindValue(":date_added", date('Y-m-d H:i:s')); // Use the current date and time
         $result = $query->execute();
         return $result;
     }
-    return -1;
+    return false;
 }
+
 
 
 //Read System
