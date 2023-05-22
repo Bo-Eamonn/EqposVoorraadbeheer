@@ -14,29 +14,32 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <script src="assets/js/colorTheme.js" defer></script>
     <script src="assets/js/createRowInsertForm.js" defer></script>
     <script src="assets/js/stockNotification.js" defer></script>
     <title>Document</title>
 
     <style>
-   .arrow-hr {
-      display: flex;
-      align-items: center;
-   }
+        .arrow-hr {
+            display: flex;
+            align-items: center;
+        }
 
-   .arrow-icon {
-      margin: 0 5px;
-      color: #888;
-   }
+        .arrow-icon {
+            margin: 0 5px;
+            color: #888;
+        }
 
-   .styled-hr {
-      flex-grow: 1;
-      border: none;
-      height: 1px;
-      background-color: #888;
-   }
-</style>
+        .styled-hr {
+            flex-grow: 1;
+            border: none;
+            height: 1px;
+            background-color: #888;
+        }
+    </style>
 </head>
 
 <body class="<?php echo $_SESSION['role'];?>">
@@ -65,7 +68,7 @@
                                 <li class="position-relative">
                                     <input class="dropdown-item position-relative" type="submit" name="system"
                                         value="Kassasysteem">
-                                        <?php
+                                    <?php
                                         if (!empty($stockSystems)) {
                                             $stockCountSystem = count($stockSystems);
                                             if ($stockCountSystem <= 5) {
@@ -115,7 +118,8 @@
                         <input type="hidden" name="logout" value="0">
                         <input type="submit" id="logout" value="Uitloggen" class="btn btn-outline-danger">
                     </form>
-                    <button class="btn btn-outline-light border border-1 shadow" id="btnSwitch">Switch theme <i class="bi bi-brightness-low"></i></button>
+                    <button class="btn btn-outline-light border border-1 shadow" id="btnSwitch">Switch theme <i
+                            class="bi bi-brightness-low"></i></button>
                 </div>
             </div>
         </div>
