@@ -1,75 +1,88 @@
-<!DOCTYPE html>
-<html lang="nl">
+<?php require_once "templates/header.php"; ?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthOne | Toevoegen Medicijnen</title>
-    <link rel="stylesheet" href="/HealthOne_MVC/assets/css/user.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-</head>
-
-<?php
-require_once "templates/header.php";
-require_once "templates/nav.php";
-?>
-<div id="medAddModal" class="modal">
-    <div class="medModal-container">
-        <div>
-            <form action="" method="post">
-                <button type="submit" name="cancelMed" class="close" title="Sluiten">
-                    <i class="fa fa-times-circle"></i>
-                </button>
-            </form>
-            <form action="" method="POST">
-                <table>
-                    <input type="hidden" name="id" value='' />
-                    <tr>
-                        <th><label for="name">Medicijn naam</label></th>
-                        <th><Label for="cat">Categorie</Label></th>
-                        <th><label for="insured">Verzekerd</label></th>
-                    </tr>
-                    <tr>
-                        <td><input type="text" required autocomplete="off" name="name" value='' /></td>
-                        <td>
-                            <select required name="cat">
-                                <option value="" disabled selected>Maak een keuze</option>
-                                <option value="ADHD-middelen">ADHD-middelen</option>
-                                <option value="Alzheimer-middelen">Alzheimer-middelen</option>
-                                <option value="Anti-epileptica">Anti-epileptica</option>
-                                <option value="Antidepressiva en lithium">Antidepressiva en lithium</option>
-                                <option value="Antihistaminica">Antihistaminica</option>
-                                <option value="Antipsychotica">Antipsychotica</option>
-                                <option value="Benzodiazepinen">Benzodiazepinen</option>
-                                <option value="Hoestmiddelen">Hoestmiddelen</option>
-                                <option value="Hoofdpijnmiddelen">Hoofdpijnmiddelen</option>
-                                <option value="Incontinentie-middelen">Incontinentie-middelen</option>
-                                <option value="Middelen bij kanker">Middelen bij kanker</option>
-                                <option value="Ontwenningsmiddelen">Ontwenningsmiddelen</option>
-                                <option value="Opioïden">Opioïden</option>
-                                <option value="Parkinsonmiddelen">Parkinsonmiddelen</option>
-                                <option value="Maagdarmmiddelen">Maagdarmmiddelen</option>
-                                <option value="Overig">Overig</option>
-                            </select>
-                        </td>
-                        <td>
-                            <label for="insured">Ja</label>
-                            <input type="radio" checked name="insured" value="yes">
-                            <label for="insured">Nee</label>
-                            <input type="radio" name="insured" value="no">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input onclick="" type='submit' name='toevoegenMed' value='opslaan'></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+<div class="container my-5 p-2 border border-2 rounded-5 shadow-sm">
+    <div class="text-center">
+        <h1>Voeg een systeem toe</h1>
     </div>
+
+    <div class="arrow-hr">
+        <span class="arrow-icon">
+            <i class="bi bi-patch-plus-fill"></i>
+        </span>
+        <hr class="styled-hr">
+        <span class="arrow-icon">
+            <i class="bi bi-patch-plus-fill"></i>
+        </span>
+    </div>
+
+    <form action="" method="POST">
+        <table class="table table-striped table-hover table-responsive" data-bs-target="dark">
+            <tr>
+                <th><label for="model">Model</label></th>
+                <th><label for="sn">Serienummer</label></th>
+                <th><label for="status">Status</label></th>
+                <th><label for="firm">Firm</label></th>
+                <th><label for="issue">Issue</label></th>
+                <th><label for="ticketed">Ticketed</label></th>
+                <th><label for="note">Note</label></th>
+            </tr>
+            <tr id="data-row">
+                <input type="hidden" name="id" value="">
+                <input type="hidden" required name="date_added" value="<?php echo date('Y-m-d H:i:s'); ?>">
+                <td><input type="text" class="form-control" required autocomplete="off" name="model" value=""
+                        placeholder="type model" title="Verplicht veld"></td>
+                <td><input type="text" class="form-control" required autocomplete="off" name="sn" value=""
+                        placeholder="JWE00000000000" title="Verplicht veld"></td>
+                <td>
+                    <select class="form-control" required name="status" title="Verplicht veld">
+                        <option value="" disabled selected>Select Status</option>
+                        <option value="Beschikbaar">Beschikbaar</option>
+                        <option value="Showroom">Showroom</option>
+                        <option value="Geleverd">Geleverd</option>
+                        <option value="Gereserveerd">Gereserveerd</option>
+                        <option value="Defect bij levering">Defect bij levering</option>
+                        <option value="Defect Retour">Defect Retour</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control" name="firm" value="" placeholder="Eqpos Kassasystemen"></td>
+                <td><input type="text" class="form-control" name="issue" value="" placeholder="Start niet op"></td>
+                <td>
+                    <select class="form-control" required name="ticketed" title="Verplicht veld">
+                        <option value="" disabled selected>Kies</option>
+                        <option value="0" selected>Nee</option>
+                        <option value="1">Ja</option>
+                    </select>
+                </td>
+                <td><textarea class="form-control" name="note" placeholder="Eventuele opmerkingen"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <div class="d-flex justify-content-between">
+                        <button onclick="" type="submit" class="btn btn-outline-danger" name="cancelSystem">Annuleren</button>
+                        <button onclick="insertRow();" type="button" class="btn btn-outline-primary" name="">Rij invoegen</button>
+                        <button onclick="" type="submit" class="btn btn-outline-success" name="addNewSystem">Toevoegen</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
-<?php
-require_once "templates/footer.php";
-?>
+
+<script>
+    function insertRow() {
+        var dataRow = document.getElementById("data-row");
+        var cloneRow = dataRow.cloneNode(true);
+
+        // Clear input values in the cloned row
+        var inputs = cloneRow.querySelectorAll("input[type=text], select, textarea");
+        inputs.forEach(function(input) {
+            input.value = "";
+        });
+
+        dataRow.parentElement.insertBefore(cloneRow, dataRow.nextElementSibling);
+    }
+</script>
+
+
+
+<?php require_once "templates/footer.php"; ?>

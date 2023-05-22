@@ -6,8 +6,12 @@ require_once "templates/header.php";
 <main class="p-5">
     <div class="card" id="system">
         <div class="card-header">
-            <div class="row">
-                <div class="col-4"></div>
+            <div class="row text-center">
+                <div class="col-4 justify-content-center">
+                <form action="" method="post">
+                    <button type="submit" class="btn btn-success border-3" name="showAddSystem">Toevoegen</button>
+                </form>
+                </div>
                 <div class="col-4">
                     <h2 class="">Kassasystemen Jassway</h2>
                 </div>
@@ -19,6 +23,14 @@ require_once "templates/header.php";
                                 Sorteer
                             </button>
                             <ul class="dropdown-menu">
+                                <li>
+                                    <button class="dropdown-item" type="submit" name="sort" value="date_asc">datum toegevoegd<i
+                                            class="bi bi-arrow-up"></i></button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item" type="submit" name="sort" value="date_desc">datum toegevoegd<i
+                                            class="bi bi-arrow-down"></i></button>
+                                </li>
                                 <li>
                                     <button class="dropdown-item" type="submit" name="sort" value="sn_asc">S/N <i
                                             class="bi bi-arrow-up"></i></button>
@@ -62,7 +74,7 @@ require_once "templates/header.php";
                     echo '<p>No data to display.</p>';
                 } else {
                     foreach ($result as $system) {
-                        echo '<tr>';
+                        echo '<tr title="Systeem Toegevoegd op: '. $system->date_added .' ">';
                         echo '<td>'. $system->model .'</td>';
                         echo '<td>'. $system->sn. '</td>';
                         echo '<td>'. $system->status .'</td>';
@@ -72,7 +84,8 @@ require_once "templates/header.php";
                         echo '<td>'. $system->notes .'</td>';
                         echo '<td>';
                         echo '<form action="" method="post">';
-                        echo '<button class="btn btn-outline-success" type="submit" value="'. $system->id .'" name="showUpdateSystem" title="Edit">';
+                        echo '<input type="hidden" name="id" value="'. $system->id .'">';
+                        echo '<button class="btn btn-outline-success" type="submit" name="showUpdateSystem" title="Edit">';
                         echo '<i class="bi bi-pencil"></i>';
                         echo '</button>';
                         echo '<!-- Button trigger modal -->';

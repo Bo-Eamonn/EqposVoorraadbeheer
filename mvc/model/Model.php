@@ -58,25 +58,27 @@ public function login($uname, $pswrd) {
 
 
 //Create New System
-    public function createSystem($model,$sn,$status,$firm,$issue,$ticketed,$notes){
-        $this->connectDb();
-        if ($model !='' && $sn !='' && $status !='' && $firm !='' && $issue !='' && $ticketed !='' && $notes !='') {
-            $query = $this->db->prepare("INSERT INTO `systems` (`id`,`mod,el``sn`,`statu,s``firm`,`issue`,`ticketed`,`notes`) VALUES ('', :model, :sn, :status, :firm, :issue, :ticketed, :notes)");
-            $query->bindParam(":model",$model);  
-            $query->bindParam(":sn",$sn); 
-            $query->bindParam(":status",$status); 
-            $query->bindParam(":firm",$firm); 
-            $query->bindParam(":issue",$issue); 
-            $query->bindParam(":ticketed",$ticketed); 
-            $query->bindParam(":notes",$notes); 
-            $result = $query->execute();
-            return $result;
-        }
-        return -1;
+public function createSystem($model,$sn,$status,$firm,$issue,$ticketed,$notes){
+    $this->connectDb();
+    if ($model !='' && $sn !='' && $status !='' && $firm !='' && $issue !='' && $ticketed !='' && $notes !='') {
+        $query = $this->db->prepare("INSERT INTO `systems` (`id`, `model`, `sn`, `status`, `firm`, `issue`, `ticketed`, `notes`, `date_added`) VALUES (NULL, :model, :sn, :status, :firm, :issue, :ticketed, :notes, :date_added)");
+        $query->bindParam(":model",$model);  
+        $query->bindParam(":sn",$sn); 
+        $query->bindParam(":status",$status); 
+        $query->bindParam(":firm",$firm); 
+        $query->bindParam(":issue",$issue); 
+        $query->bindParam(":ticketed",$ticketed); 
+        $query->bindParam(":notes",$notes); 
+        $query->bindValue(":date_added", date('Y-m-d H:i:s')); // Use the current date and time
+        $result = $query->execute();
+        return $result;
     }
+    return -1;
+}
+
 
 //Read System
-public function getSystem($sort = 'id_asc'){
+public function getSystem($sort = 'date_desc'){
     $this->connectDb();
     
     // Modify the SQL query based on the selected sort option
@@ -88,8 +90,12 @@ public function getSystem($sort = 'id_asc'){
         $orderBy = 'status ASC';
     } elseif ($sort === 'status_desc') {
         $orderBy = 'status DESC';
+    } elseif ($sort === 'date_asc') {
+        $orderBy = 'date_added ASC';
+    } elseif ($sort === 'date_desc') {
+        $orderBy = 'date_added DESC';
     } else {
-        $orderBy = 'id ASC'; // Default sort option is 'id_asc'
+        $orderBy = 'date_added DESC'; // Default sort option is 'id_asc'
     }
     
     $select = $this->db->query('SELECT * FROM `systems` ORDER BY '.$orderBy);

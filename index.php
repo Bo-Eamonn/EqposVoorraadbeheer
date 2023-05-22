@@ -29,12 +29,12 @@ elseif (isset($_POST['system']) || isset($_POST['cancelSystem'])) {
     $controller->showSystemAction();
 } elseif (isset($_POST['showAddSystem'])) {
     $controller->addSystemAction();
-} elseif (isset($_POST['toevoegenSystem'])) {
+} elseif (isset($_POST['addNewSystem'])) {
     $controller->saveSystem();
 } elseif (isset($_POST['deleteSystem'])) {
     $controller->deleteSystem();
 } elseif (isset($_POST['showUpdateSystem'])) {
-    $controller->showUpdateSystem($id);
+    $controller->showUpdateSystem();
 } elseif (isset($_POST['updateSystem'])) {
     $controller->updateSystem();
 } elseif (isset($_POST['sort'])) { // Handle the sort option

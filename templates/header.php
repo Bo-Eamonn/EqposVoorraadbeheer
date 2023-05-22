@@ -16,6 +16,25 @@
 
     <script src="assets/js/colorTheme.js" defer></script>
     <title>Document</title>
+
+    <style>
+   .arrow-hr {
+      display: flex;
+      align-items: center;
+   }
+
+   .arrow-icon {
+      margin: 0 5px;
+      color: #888;
+   }
+
+   .styled-hr {
+      flex-grow: 1;
+      border: none;
+      height: 1px;
+      background-color: #888;
+   }
+</style>
 </head>
 
 <body class="<?php echo $_SESSION['role'];?>">

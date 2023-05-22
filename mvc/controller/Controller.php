@@ -17,79 +17,93 @@ class Controller{
     }
 //CRUD System
 public function showSystemAction(){
-    $sort = $_POST['sort'] ?? 'id_asc'; // Retrieve the selected sort option
+    $sort = $_POST['sort'] ?? 'date_desc'; // Retrieve the selected sort option
     $result = $this->model->getSystem($sort);
     $this->view->showSystem($result);
 }
-    public function addSystemAction(){
-        $result = "";
-        $this->view->createSystem($result);
-    }
-    public function saveSystem() {
-        $model = $_POST["model"];
-        $sn = filter_input(INPUT_POST,'sn');
-        $status = $_POST["status"];
-        $firm = filter_input(INPUT_POST,'firm');
-        $issue = filter_input(INPUT_POST,'issue');
-        $ticketed = $_POST["ticketed"];
-        $notes = filter_input(INPUT_POST,'notes');
-        $this->model->createSystem($model,$sn,$status,$firm,$issue,$ticketed,$notes);
+
+public function addSystemAction(){
+    $this->view->addSystem();
+}
+
+public function saveSystem() {
+    $model = $_POST["model"];
+    $sn = filter_input(INPUT_POST,'sn');
+    $status = $_POST["status"];
+    $firm = filter_input(INPUT_POST,'firm');
+    $issue = filter_input(INPUT_POST,'issue');
+    $ticketed = $_POST["ticketed"];
+    $notes = filter_input(INPUT_POST,'note');
+    $result = $this->model->createSystem($model,$sn,$status,$firm,$issue,$ticketed,$notes);
+
+    if ($result !== -1) {
+        // System created successfully
         $this->showSystemAction();
+    } else {
+        // Error creating the system
+        // You can handle the error in a way that suits your application
     }
-    public function deleteSystem() {
-        $id = $_POST["deleteSystem"];
-        $delSystem = $this->model->deleteSystem($id);
-        $this->showSystemAction();
-    }
-    public function showUpdateSystem($id=null) {
-        $this->view->showUpdateSystem($id);
-    }
-    public function updateSystem(){
-        $id = filter_input(INPUT_POST, 'id');
-        $model = $_POST["model"];
-        $sn = filter_input(INPUT_POST,'sn');
-        $status = $_POST["status"];
-        $firm = filter_input(INPUT_POST,'firm');
-        $issue = filter_input(INPUT_POST,'issue');
-        $ticketed = $_POST["ticketed"];
-        $notes = filter_input(INPUT_POST,'notes');
-        $result = $this->model->updateSystem($id, $model,$sn,$status,$firm,$issue,$ticketed,$notes);
-        $this->view->showSystem($result);
-    }
+}
+
+public function deleteSystem() {
+    $id = $_POST["deleteSystem"];
+    $delSystem = $this->model->deleteSystem($id);
+    $this->showSystemAction();
+}
+
+public function showUpdateSystem($id=null) {
+    $system = $this->model->selectSystem($id);
+    $this->view->showUpdateSystem($system, $id);
+}
+
+public function updateSystem(){
+    $id = filter_input(INPUT_POST, 'id');
+    $model = $_POST["model"];
+    $sn = filter_input(INPUT_POST,'sn');
+    $status = $_POST["status"];
+    $firm = filter_input(INPUT_POST,'firm');
+    $issue = filter_input(INPUT_POST,'issue');
+    $ticketed = $_POST["ticketed"];
+    $notes = filter_input(INPUT_POST,'note');
+    $result = $this->model->updateSystem($id, $model,$sn,$status,$firm,$issue,$ticketed,$notes);
+    $this->showSystemAction();
+}
 
 
-//CRUD pin
-    public function showPinAction(){
-        $result = $this->model->getPin();
-        $this->view->showPin($result);
-    }
-//CRUD handheld
-    public function showHandheldAction(){
-        $result = $this->model->getHandheld();
-        $this->view->showHandheld($result);
-    }
-//CRUD flip
-    public function showFlipAction(){
-        $result = $this->model->getFlip();
-        $this->view->showFlip($result);
-    }
-//CRUD drawer
-    public function showDrawerAction(){
-        $result = $this->model->getDrawer();
-        $this->view->showDrawer($result);
-    }
-//CRUD pc
-    public function showPcAction(){
-        $result = $this->model->getPc();
-        $this->view->showPc($result);
-    }
-//CRUD printer
-    public function showPrinterAction(){
-        $result = $this->model->getPrinter();
-        $this->view->showPrinter($result);
-    }
+// //CRUD pin
+//     public function showPinAction(){
+//         $result = $this->model->getPin();
+//         $this->view->showPin($result);
+//     }
+// //CRUD handheld
+//     public function showHandheldAction(){
+//         $result = $this->model->getHandheld();
+//         $this->view->showHandheld($result);
+//     }
+// //CRUD flip
+//     public function showFlipAction(){
+//         $result = $this->model->getFlip();
+//         $this->view->showFlip($result);
+//     }
+// //CRUD drawer
+//     public function showDrawerAction(){
+//         $result = $this->model->getDrawer();
+//         $this->view->showDrawer($result);
+//     }
+// //CRUD pc
+//     public function showPcAction(){
+//         $result = $this->model->getPc();
+//         $this->view->showPc($result);
+//     }
+// //CRUD printer
+//     public function showPrinterAction(){
+//         $result = $this->model->getPrinter();
+//         $this->view->showPrinter($result);
+//     }
+
 
 //CRUD USER
+    // Only accesable for Admin
     public function showUserAction(){
         $result = $this->model->getUsers();
         $this->view->showUsers($result);
@@ -119,56 +133,49 @@ public function showSystemAction(){
     }
 
 // default Fucntions    
-public function loginAction() {
-    if (isset($_POST['uname']) && isset($_POST['pswrd'])) {
-        $uname = filter_input(INPUT_POST, 'uname');
-        $pswrd = filter_input(INPUT_POST, 'pswrd');
-        
-        if ($this->model->login($uname, $pswrd)) {
-            if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-                $model = new Model();
-                $stockSystems = $model->getSystemStock();
-                $this->model->getHome();
-                $this->view->showHome($stockSystems);
+    public function loginAction() {
+        if (isset($_POST['uname']) && isset($_POST['pswrd'])) {
+            $uname = filter_input(INPUT_POST, 'uname');
+            $pswrd = filter_input(INPUT_POST, 'pswrd');
+
+            if ($this->model->login($uname, $pswrd)) {
+                if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+                    $model = new Model();
+                    $stockSystems = $model->getSystemStock();
+                    $this->model->getHome();
+                    $this->view->showHome($stockSystems);
+                } else {
+                    $this->view->showLogin();
+                }
             } else {
-                $this->view->showLogin();
+                $errorMessage = "Invalid username or password. Please try again.";
+                $this->view->showLogin($errorMessage);
             }
         } else {
-            $errorMessage = "Invalid username or password. Please try again.";
-            $this->view->showLogin($errorMessage);
+            $this->view->showLogin();
         }
-    } else {
-        $this->view->showLogin();
     }
-}
-    
+    // Show Stock in Nav 
+    public function showStockNav(){
+        $model = new Model();
+        $stockSystems = $model->getSystemStock();
+        $this->view->renderNavStock($stockSystems);
+    }
+    //show Homepage and show stock on homepage
     public function showHomeAction(){
         $model = new Model();
         $stockSystems = $model->getSystemStock();
         $this->model->getHome();
-        // $this->model->getSystem();
         $this->view->showHome($stockSystems);
     }
-
+    //Logout
     public function logoutAction(){
         $this->model->logout();
         $this->view->showLogin();
         
     }
 
-// Show Stock in Nav 
-// public function getSystemStockAction() {
-//     $stockSystems = $this->model->getSystemStock();
-//     $this->view->renderNavStock($stockSystems);
-// }
-public function showStockNav()
-{
-    $model = new Model();
-    $stockSystems = $model->getSystemStock();
 
-    $this->view->renderNavStock($stockSystems);
-    
-}
 
     
 }

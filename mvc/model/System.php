@@ -12,6 +12,7 @@ class System
     private $issue;
     private $ticketed;
     private $notes;
+    private $date_added;
 
     public function __get($property) {
         if (property_exists($this, $property)) {

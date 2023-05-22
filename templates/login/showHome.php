@@ -1,22 +1,5 @@
 <?php require_once "templates/header.php"; ?>
-<style>
-   .arrow-hr {
-      display: flex;
-      align-items: center;
-   }
 
-   .arrow-icon {
-      margin: 0 5px;
-      color: #888;
-   }
-
-   .styled-hr {
-      flex-grow: 1;
-      border: none;
-      height: 1px;
-      background-color: #888;
-   }
-</style>
 <main class="p-5 text-center container-fluid">
    <div class="row justify-content-md-center">
       <section class="col-12 mb-3 border rounded-4 border-2 shadow-lg">

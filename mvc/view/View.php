@@ -11,54 +11,37 @@ class View{
     public function __construct($model){
         $this->model = $model;
     }
-    public function showLogin($errorMessage = ""){
-        require ('templates/login/login.php');
-    }
-// CREATE
+    
+// CRud view System
     public function addSystem($result){
         require ('templates/system/addSystem.php');
     }
     public function createSystem($result){
         require ('templates/system/addSystem.php');
     }
-    
-    public function addUser($result){
-        require ('templates/user/addUser.php');
-    }
-
-    public function createUser($result){
-        require ('templates/user/addUser.php');
-    }
-
-// READ
-    public function showHome($stockSystems){ 
-        require ('templates/login/showHome.php');
+    public function showUpdateSystem($system, $id=NULL){
+        require ('templates/system/updateSystem.php');
     }
 
     public function showSystem($result, $sort = 'id_asc'){
         require ('templates/system/showSystem.php');
     }
 
+    
+    
 
-    public function showUsers($result){
-        require ('templates/user/showUser.php');
+// Global Views
+    // Show Login
+    public function showLogin($errorMessage = ""){
+        require ('templates/login/login.php');
     }
-
-// Show stock in nav
-// variables , $stockPins, $stockHandhelds, $stockFliptops, $stockDrawers, $StockPcs, $stockPrinters
-
+    // Show stock in nav
+    // variables , $stockPins, $stockHandhelds, $stockFliptops, $stockDrawers, $StockPcs, $stockPrinters
     public function renderNavStock($stockSystems) {
         require('templates/header.php');
-
     }
-
-
-// UPDATE
-    public function showUpdateSystem($id=NULL){
-            require ('templates/system/updateSystem.php');
-    }
-    public function updateUser($result){
-        require ('templates/patient/updateUser.php');
-    }
-    
+    // Show Homepage
+    public function showHome($stockSystems){ 
+        require ('templates/login/showHome.php');
+    }    
 }
