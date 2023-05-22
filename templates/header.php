@@ -15,6 +15,7 @@
     </script>
 
     <script src="assets/js/colorTheme.js" defer></script>
+    <script src="assets/js/createRowInsertForm.js" defer></script>
     <title>Document</title>
 
     <style>
