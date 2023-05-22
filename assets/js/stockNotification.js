@@ -4,7 +4,7 @@ setInterval(checkStockLevel, 60000); // Check every 1 minute
 function checkStockLevel() {
   // Make an AJAX request to retrieve the stock count
   $.ajax({
-    url: 'mvc/model/get_stock_count.php',
+    url: 'mvc/model/getStockCount.php',
     method: 'GET',
     success: function(response) {
       var stockCount = parseInt(response); // Assuming the response is the stock count as an integer
