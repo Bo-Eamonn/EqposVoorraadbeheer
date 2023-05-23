@@ -29,8 +29,19 @@ public function showSystem($result, $sort = 'id_asc') {
     require ('templates/system/showSystem.php');
 }
 
+// CRUD User
+public function showUsers($result){
+    require ('templates/user/showUsers.php');
+}
 
-    
+public function createUser(){
+    require ('templates/user/createUser.php');
+}
+
+public function updateUser(){
+    require ('templates/user/updateUser.php');
+}
+
     
 
 // Global Views

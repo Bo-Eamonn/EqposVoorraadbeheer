@@ -13,7 +13,7 @@ $controller = new Controller();
             $controller->logoutAction();
         }
 //CRUD USER
-        elseif (isset($_POST['user']) || isset($_POST['cancelUser'])) {
+        elseif (isset($_POST['users']) || isset($_POST['cancelUser'])) {
             $controller->showUserAction();
         }elseif (isset($_POST['showAddUser'])) {
             $controller->addUserAction();

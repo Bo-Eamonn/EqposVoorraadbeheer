@@ -57,6 +57,13 @@
                     <li class="nav-item">
                         <form action="" method="post"><input type="submit" name="home" value="home"></input></form>
                     </li>
+                <?php
+                    if ($_SESSION['role'] === 'admin') {
+                        echo '<li class="nav-item">
+                                <form action="" method="post"><input type="submit" name="users" value="Gebruikers"></input></form>
+                            </li>';
+                    }
+                ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                             Kies Voorraad Soort</a>
