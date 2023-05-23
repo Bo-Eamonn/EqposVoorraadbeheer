@@ -17,7 +17,7 @@ $controller = new Controller();
             $controller->showUserAction();
         }elseif (isset($_POST['showAddUser'])) {
             $controller->addUserAction();
-        }elseif (isset($_POST['toevoegenUser'])) {
+        }elseif (isset($_POST['addNewUser'])) {
             $controller->saveUser();
         } elseif(isset($_POST['deleteUser'])) {
             $controller->deleteUser();
